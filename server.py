@@ -1,7 +1,6 @@
 import io
 import os
 import asyncio
-from threading import local
 from aiohttp import web
 from PIL import Image
 import aiohttp_cors
@@ -9,7 +8,10 @@ import aiohttp_cors
 # Ruta del directorio estático
 static_dir = os.path.join(os.path.dirname(__file__), 'static')
 local_host = '0.0.0.0' # Cambiar por la dirección IP de tu máquina
-
+# Crear el directorio 'converted' dentro del directorio estático si no existe
+converted_dir = os.path.join(static_dir, 'converted')
+if not os.path.exists(converted_dir):
+    os.makedirs(converted_dir)
 # Función para eliminar el archivo después de un minuto
 async def delete_file_after_delay(file_path, delay):
     await asyncio.sleep(delay)
