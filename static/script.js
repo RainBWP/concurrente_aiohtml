@@ -10,3 +10,13 @@ function call_https_request(from) {
     }
     xhr.send();
 }
+
+function showImage(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        document.getElementById('preview').src = e.target.result;
+        document.getElementById('preview').hidden = false;
+    };
+    reader.readAsDataURL(file);
+}

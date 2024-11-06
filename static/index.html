@@ -8,6 +8,53 @@
 </head>
 <body>
     <script src="/static/script.js"></script>
-    <h1>Hello, World!</h1>
+    <header>
+        <h1>Cambiar tipo de archivo de Imagen - Online</h1>
+        <p>Con esta herramienta puedes cambiar de archivo un archivo <b>png</b> a <b>jpg</b> o viseversa</p>
+        
+    </header>
+    
+    <main>
+        <section>
+            <h2>Selecciona el archivo</h2>
+            <input type="file" id="file" accept="image/*" onchange="showImage(event)">
+            <img id="preview" src="" alt="Vista previa de la imagen" hidden>
+        </section>
+
+        <div>
+            <h2>Selecciona el formato</h2>
+            <div>
+                <label>
+                    <input type="radio" name="format" value="jpg">
+                    JPG
+                </label>
+                <label>
+                    <input type="radio" name="format" value="png" checked>
+                    PNG
+                </label>
+                <label>
+                    <input type="radio" name="format" value="WEBP">
+                    WEBP
+                </label>
+                <label>
+                    <input type="radio" name="format" value="GIF">
+                    GIF
+                </label>
+            </div>
+            
+            <input type="button" value="Convertir">
+        </div>
+
+        <section hidden>
+            <h2>Resultado</h2>
+            <img id="image" src="" alt="">
+            <a id="download" download="" href="" >Descargar</a>
+        </section>
+
+    </main>
+    <footer>
+        <p>Hecho con ❤️ por <a href="https://github.com/RainBWP">RainBWP</a></p>
+        <p>Checa el Repositorio de la pagina <a href="https://github.com/RainBWP/reformat_image_aiohtml">Aqui</a></p>
+    </footer>
 </body>
 </html>
