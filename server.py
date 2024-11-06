@@ -1,9 +1,12 @@
 import io
 import os
 import asyncio
+import time
 from aiohttp import web
 from PIL import Image
 import aiohttp_cors
+
+countint = int(0)
 
 # Ruta del directorio estático
 static_dir = os.path.join(os.path.dirname(__file__), 'static')
@@ -27,41 +30,42 @@ async def handle_index(request):
 # Se espera que la imagen sea enviada por POST
 # http://[host]/convert
 async def handle_api(request):
+    getTime = int(time.time())
+    print(f"Time: {getTime}")
     # Obtener la imagen y el formato enviados por POST
     data = await request.post()
     image = data['image'].file.read()
     format = data['format']
-    quality = 100
+    quality = 90
 
     # Check the size of the uploaded image
     max_size = 10 * 1024 * 1024  # 10MB
     if len(image) > max_size:
         # Reduce the quality if the image size exceeds the limit
         quality = 50
-
-    if format == 'meme':
-        format = 'jpeg'
-        quality = 1
-        resolution = (150, 150)
-
     # Crear un objeto Image
     img = Image.open(io.BytesIO(image))
     
     # Convertir la imagen al formato deseado
     buffer = io.BytesIO()
     if format == 'meme':
+        format = 'jpeg'
+        quality = 1
+        resolution = (150, 150)
         img = img.resize(resolution)
-        img.save(buffer, format='jpeg', quality=quality)
-    else:
-        img.save(buffer, format=format.upper(), quality=quality)
+
+    if format == 'jpeg':
+        img.convert('RGB')
+    img.save(buffer, format=format.upper(), quality=quality, optimize=True, )
     buffer.seek(0)
     
     # Guardar la imagen convertida en el directorio estático
-    output_filename = f'converted_image.{format}'
+    output_filename = f'converted_image{getTime}.{format}'
     output_path = os.path.join(static_dir,'converted', output_filename)
     print(f"Saving image to {output_path}")
     with open(output_path, 'wb') as f:
         f.write(buffer.getvalue())
+        countint += 1
     
     # Programar la eliminación del archivo después de un minuto
     asyncio.create_task(delete_file_after_delay(output_path, 60))

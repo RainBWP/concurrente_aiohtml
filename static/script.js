@@ -62,10 +62,12 @@ function sendImage() { // send image to server
             var data = JSON.parse(xhr.responseText);
             console.log(data);
             document.getElementById('image').src = '/static/converted/' + data['filename'];
+            document.getElementById('download').value = 'Descargar ' + data['filename'];
             document.getElementById('download').hidden = false;
             document.getElementById('download').href = '/static/converted/' + data['filename'];
         }
     };
+    document.getElementById('download').value = 'Cargando...'; // disable button
 
     // Create FormData and append the image and format
     var formData = new FormData();
