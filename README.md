@@ -19,6 +19,15 @@ El archivo `server.py` depende de las librerias
 - `aiohttp`
 - `Pillow`
 - `aiohttp_cors`
+
+## Ejecucion
+Se recomienda un etorno en Linux
+```bash
+sudo apt-get update
+sudo apt-get install libjpeg-dev zlib1g-dev libpng-dev libwebp-dev
+pip install Pillow aiohttp aiohttp_cors
+python3 server.py
+```
 ## Referencias
 - Documentacion de [aiohttp](https://docs.aiohttp.org/en/stable/)
 - Python libreria de cambiar formato de imagenes Pillow gracias a [Cloudinary](https://cloudinary.com/guides/web-performance/converting-images-with-python)
