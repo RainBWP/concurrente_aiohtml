@@ -56,7 +56,7 @@ async def handle_api(request):
     
     # Guardar la imagen convertida en el directorio estático
     output_filename = f'converted_image.{format}'
-    output_path = os.path.join(static_dir, output_filename)
+    output_path = os.path.join(static_dir,'converted', output_filename)
     print(f"Saving image to {output_path}")
     with open(output_path, 'wb') as f:
         f.write(buffer.getvalue())
@@ -86,13 +86,14 @@ cors = aiohttp_cors.setup(app, defaults={
 })
 
 async def cleanup_generated_files(app):
-    for filename in os.listdir(static_dir):
-        file_path = os.path.join(static_dir, filename)
+    for filename in os.listdir(static_dir+ '/converted'):
+        file_path = os.path.join(static_dir,'converted', filename)
         if os.path.isfile(file_path):
             os.remove(file_path)
             print(f"Deleted file {file_path}")
 
 app.on_cleanup.append(cleanup_generated_files)
+app.on_shutdown.append(cleanup_generated_files)
 
 # Añadir CORS a las rutas
 for route in list(app.router.routes()):
