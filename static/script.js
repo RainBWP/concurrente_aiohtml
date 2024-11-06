@@ -1,4 +1,5 @@
 var global_image = new FormData(); // global variable to store image data
+const local_host = 'localhost' // default: window.location.origin
 
 console.log(window.location.origin)
 
