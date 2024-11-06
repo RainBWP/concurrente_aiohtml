@@ -11,6 +11,7 @@
     --background-buttom-hover: #e1e1e1;
     --background-buttom-active: #d4d4d4;
     --highlight-color: #b2ac00;
+    --text-color-disable: #929292;
 
 }
 
@@ -22,6 +23,7 @@
         --background-buttom-hover: #424242;
         --background-buttom-active: #3b3b3b;
         --highlight-color: #fff700;
+        --text-color-disable: #5b5b5b;
     }
 }
 
@@ -56,6 +58,21 @@ input {
     border-radius: 0.25rem;
     color: var(--text-color);
     transition: background-color 0.2s;
+}
+
+input:hover {
+    background-color: var(--background-buttom-hover);
+}
+input:active {
+    background-color: var(--background-buttom-active);
+    
+}
+
+
+input:disabled {
+    background-color: var(--background-body);
+    color: var(--text-color-disable);
+    cursor: not-allowed;
 }
 
 header, main, footer, div {
