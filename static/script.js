@@ -42,16 +42,24 @@ function showImage(event) { // show image preview
 
 function sendImage() { // send image to server
     var url = window.location.origin + '/convert'; // server url
-    var xhr = new XMLHttpRequest(); 
+    var xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
-    xhr.send(global_image);
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             document.getElementById('resultado').hidden = false;
             var data = JSON.parse(xhr.responseText);
             console.log(data);
+            document.getElementById('image').src = '/static/' + data['filename'];
             document.getElementById('download').hidden = false;
-            document.getElementById('download').href = 'static/' + data['filename'];
+            document.getElementById('download').href = '/static/' + data['filename'];
         }
-    }
+    };
+
+    // Create FormData and append the image and format
+    var formData = new FormData();
+    formData.append('image', global_image.get('image'));
+    formData.append('format', document.querySelector('input[name="format"]:checked').value);
+
+    xhr.send(formData); // send the FormData object
+    console.log(formData);
 }
