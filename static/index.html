@@ -24,33 +24,34 @@
 
         <div>
             <h2>Selecciona el formato</h2>
-            <div id="selectorformat">
+            <div>
                 <label>
-                    <input type="radio" name="format" value="jpg">
+                    <input class="selectorformat" type="radio" name="format" value="jpg">
                     JPG
                 </label>
                 <label>
-                    <input type="radio" name="format" value="png">
+                    <input class="selectorformat" type="radio" name="format" value="png">
                     PNG
                 </label>
                 <label>
-                    <input type="radio" name="format" value="webp">
+                    <input class="selectorformat" type="radio" name="format" value="webp">
                     WEBP
                 </label>
                 <label>
-                    <input type="radio" name="format" value="gif">
+                    <input class="selectorformat" type="radio" name="format" value="gif">
                     GIF
                 </label>
                 <label>
-                    <input type="radio" name="format" value="meme">
+                    <input class="selectorformat" type="radio" name="format" value="meme">
                     MEME
                 </label>
             </div>
             
-            <input type="button" value="Convertir" onclick="sendImage()">
+            <input type="button" value="Convertir" id="convertButton" onclick="sendImage()" disabled>
+
         </div>
 
-        <section>
+        <section hidden id="resultado">
             <h2>Resultado</h2>
             <img id="image" src="/image.jpg" alt="Imagen Convertida">
             <p id="message">Tip del dia: </p>
