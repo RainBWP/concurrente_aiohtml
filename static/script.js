@@ -19,6 +19,17 @@ function call_https_request(from) { // basic function to call the server
 
 function showImage(event) { // show image preview
     const file = event.target.files[0];
+    const maxSize = 10 * 1024 * 1024; // 10MB
+    const fileSizeError = document.getElementById('fileSizeError');
+
+    if (file.size > maxSize) {
+        fileSizeError.hidden = false;
+        document.getElementById('convertButton').disabled = true;
+        return;
+    } else {
+        fileSizeError.hidden = true;
+    }
+
     const reader = new FileReader();
     var fileformat;
     reader.onload = function(e) {
