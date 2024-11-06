@@ -24,7 +24,7 @@ El archivo `server.py` depende de las librerias
 Se recomienda un etorno en Linux
 ```bash
 sudo apt-get update
-sudo apt-get install libjpeg-dev zlib1g-dev libpng-dev libwebp-dev
+sudo apt-get install -y libjpeg-dev zlib1g-dev libpng-dev libwebp-dev libgif-dev
 pip install Pillow aiohttp aiohttp_cors
 python3 server.py
 ```
