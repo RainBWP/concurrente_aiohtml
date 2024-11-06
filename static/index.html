@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Convertidor de Imagenes</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="/static/exchange-svgrepo-com.svg">
 </head>
 <body>
     <script src="/static/script.js"></script>
     <header>
-        <h1>Cambiar tipo de archivo de Imagen - Online</h1>
+        <h1>Convertidor de Imagen - Online</h1>
         <p>Con esta herramienta puedes cambiar de archivo un archivo <b>png</b> a <b>jpg</b> o viseversa</p>
         
     </header>
@@ -23,32 +24,37 @@
 
         <div>
             <h2>Selecciona el formato</h2>
-            <div>
+            <div id="selectorformat">
                 <label>
                     <input type="radio" name="format" value="jpg">
                     JPG
                 </label>
                 <label>
-                    <input type="radio" name="format" value="png" checked>
+                    <input type="radio" name="format" value="png">
                     PNG
                 </label>
                 <label>
-                    <input type="radio" name="format" value="WEBP">
+                    <input type="radio" name="format" value="webp">
                     WEBP
                 </label>
                 <label>
-                    <input type="radio" name="format" value="GIF">
+                    <input type="radio" name="format" value="gif">
                     GIF
+                </label>
+                <label>
+                    <input type="radio" name="format" value="meme">
+                    MEME
                 </label>
             </div>
             
-            <input type="button" value="Convertir">
+            <input type="button" value="Convertir" onclick="sendImage()">
         </div>
 
-        <section hidden>
+        <section>
             <h2>Resultado</h2>
-            <img id="image" src="" alt="">
-            <a id="download" download="" href="" >Descargar</a>
+            <img id="image" src="/image.jpg" alt="Imagen Convertida">
+            <p id="message">Tip del dia: </p>
+            <a id="download" download="/image.jpg" href="">Descargar</a>
         </section>
 
     </main>
