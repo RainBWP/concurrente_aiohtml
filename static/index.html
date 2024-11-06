@@ -19,6 +19,7 @@
         <section>
             <h2>Selecciona el archivo</h2>
             <input type="file" id="file" accept="image/*" onchange="showImage(event)">
+            <p id="fileSizeError" style="color: red;" hidden>El archivo excede el tamaño máximo de 10MB.</p>
             <img id="preview" src="" alt="Vista previa de la imagen" hidden>
         </section>
 
