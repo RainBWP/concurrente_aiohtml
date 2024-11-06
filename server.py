@@ -1,4 +1,5 @@
 import io
+from threading import local
 from aiohttp import web
 from PIL import Image
 import os
@@ -6,6 +7,7 @@ import aiohttp_cors
 
 # Ruta del directorio estático
 static_dir = os.path.join(os.path.dirname(__file__), 'static')
+local_host = '0.0.0.0' # Cambiar por la dirección IP de tu máquina
 
 # Manejador para la página principal
 async def handle_index(request):
@@ -36,6 +38,7 @@ async def handle_api(request):
     # Guardar la imagen convertida en el directorio estático
     output_filename = f'converted_image.{format}'
     output_path = os.path.join(static_dir, output_filename)
+    print(f"Saving image to {output_path}")
     with open(output_path, 'wb') as f:
         f.write(buffer.getvalue())
     
@@ -65,7 +68,7 @@ for route in list(app.router.routes()):
     cors.add(route)
 
 if __name__ == '__main__':
-    host = os.getenv('HOST', '0.0.0.0')
+    host = os.getenv('HOST', local_host)
     port = int(os.getenv('PORT', 8080))
     print(f"Starting server on {host}:{port}")
     web.run_app(app, host=host, port=port)
