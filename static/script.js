@@ -61,9 +61,9 @@ function sendImage() { // send image to server
             document.getElementById('resultado').hidden = false;
             var data = JSON.parse(xhr.responseText);
             console.log(data);
-            document.getElementById('image').src = '/static/' + data['filename'];
+            document.getElementById('image').src = '/static/converted/' + data['filename'];
             document.getElementById('download').hidden = false;
-            document.getElementById('download').href = '/static/' + data['filename'];
+            document.getElementById('download').href = '/static/converted/' + data['filename'];
         }
     };
 
