@@ -18,6 +18,7 @@ El **backend** y el **frontend** son levantados por el mismo archivo `server.py`
 El archivo `server.py` depende de las librerias
 - `aiohttp`
 - `Pillow`
+- `aiohttp_cors`
 ## Referencias
 - Documentacion de [aiohttp](https://docs.aiohttp.org/en/stable/)
 - Python libreria de cambiar formato de imagenes Pillow gracias a [Cloudinary](https://cloudinary.com/guides/web-performance/converting-images-with-python)
